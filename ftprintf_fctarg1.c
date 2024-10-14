@@ -6,7 +6,7 @@
 /*   By: dvauthey <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:53:09 by dvauthey          #+#    #+#             */
-/*   Updated: 2024/10/14 18:16:28 by dvauthey         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:34:44 by dvauthey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,19 @@ int	print_p(unsigned long p)
 	unsigned long	temp;
 
 	nb_sixt = 2;
-	i = 0;
-	temp = p;
+	i = 1;
 	s = "0123456789abcdef";
 	write(1, "0x", 2);
-	nb_sixt += nb_of_sixt(p, 16);
-	while (nb_sixt > i)
+	nb_sixt += nb_of_nb(p, 16);
+	while (nb_sixt - 2 >= i)
 	{
-		
+		if (nb_sixt - 2 > i)
+			temp = p / ft_power(16, nb_sixt - 2 - i);
+		temp %= 16;
 		write(1, &s[temp], 1);
+		i++;
 	}
-	return (count);
+	return (nb_sixt);
 }
 
 int	print_int(int n)

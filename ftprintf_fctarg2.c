@@ -6,11 +6,21 @@
 /*   By: dvauthey <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 13:37:07 by dvauthey          #+#    #+#             */
-/*   Updated: 2024/10/14 18:12:58 by dvauthey         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:34:47 by dvauthey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_power(unsigned long n, int power)
+{
+	while (power - 1 > 0)
+	{
+		n *= n;
+		power--;
+	}
+	return (n);
+}
 
 int	print_u(unsigned int n)
 {
