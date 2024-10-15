@@ -6,7 +6,7 @@
 /*   By: dvauthey <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:55:33 by dvauthey          #+#    #+#             */
-/*   Updated: 2024/10/14 16:25:01 by dvauthey         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:05:33 by dvauthey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 static int	which_type(va_list args, const char *s, int i)
 {
 	int	count;
+	int	isox;
 
 	count = 0;
+	isox = 1;
 	if (s[i] == 'c')
 		count += print_c(va_arg(args, int));
 	if (s[i] == 's')
 		count += print_s(va_arg(args, char *));
 	if (s[i] == 'p')
-		count += print_p(va_arg(args, unsigned long));
+		count += print_p(va_arg(args, unsigned long), isox);
 	if (s[i] == 'd' || s[i] == 'i')
 		count += print_int(va_arg(args, int));
 	if (s[i] == 'u')
