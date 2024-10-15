@@ -6,7 +6,7 @@
 /*   By: dvauthey <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 13:37:07 by dvauthey          #+#    #+#             */
-/*   Updated: 2024/10/15 11:59:33 by dvauthey         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:21:25 by dvauthey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	print_u(unsigned int n)
 {
 	int	count;
+	int	isgood;
 
 	count = nb_of_nb(n, 10);
 	if (n == 0)
@@ -22,14 +23,17 @@ int	print_u(unsigned int n)
 	if (n > 9)
 		print_u(n / 10);
 	n = (n % 10) + '0';
-	write(1, &n, 1);
+	isgood = write(1, &n, 1);
+	if (isgood == -1)
+		return (-1);
 	return (count);
 }
 
 int	print_xlow(unsigned int n)
 {
-	int				count;
-	char			*s;
+	int		count;
+	char	*s;
+	int		isgood;
 
 	count = nb_of_nb((unsigned long) n, 16);
 	s = "0123456789abcdef";
@@ -37,14 +41,17 @@ int	print_xlow(unsigned int n)
 		count++;
 	if (n > 15)
 		print_xlow(n / 16);
-	write(1, &s[n % 16], 1);
+	isgood = write(1, &s[n % 16], 1);
+	if (isgood == -1)
+		return (-1);
 	return (count);
 }
 
 int	print_xup(unsigned int n)
 {
-	int				count;
-	char			*s;
+	int		count;
+	char	*s;
+	int		isgood;
 
 	count = nb_of_nb((unsigned long) n, 16);
 	s = "0123456789ABCDEF";
@@ -52,6 +59,8 @@ int	print_xup(unsigned int n)
 		count++;
 	if (n > 15)
 		print_xup(n / 16);
-	write(1, &s[n % 16], 1);
+	isgood = write(1, &s[n % 16], 1);
+	if (isgood == -1)
+		return (-1);
 	return (count);
 }

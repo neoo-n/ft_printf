@@ -6,7 +6,7 @@
 /*   By: dvauthey <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:55:33 by dvauthey          #+#    #+#             */
-/*   Updated: 2024/10/15 12:05:33 by dvauthey         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:21:10 by dvauthey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ static int	which_type(va_list args, const char *s, int i)
 	if (s[i] == 'X')
 		count += print_xup(va_arg(args, unsigned int));
 	if (s[i] == '%')
-	{
-		write(1, "%", 1);
-		count++;
-	}
+		count = write(1, "%", 1);
 	return (count);
 }
 
@@ -56,11 +53,14 @@ int	ft_printf(const char *s, ...)
 		{
 			i++;
 			count += which_type(args, s, i);
+			if (count == -1)
+				return (-1);
 		}
 		else
 		{
-			write(1, &s[i], 1);
-			count++;
+			count += write(1, &s[i], 1);
+			if (count == -1)
+				return (-1);
 		}
 		i++;
 	}
